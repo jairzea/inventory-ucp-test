@@ -43,8 +43,13 @@ export const ProductForm = () => {
     };
     addProduct(newProduct);
     notifySuccess("Product added successfully.");
-    reset();
+    resetForm();
   };
+
+  const resetForm = () => {
+    reset();
+    setProductToEdit({});
+  }
 
   const onUpdate = () => {
     const { name, id, description, amount } = getValues();
@@ -62,7 +67,7 @@ export const ProductForm = () => {
     } 
     updateProduct(id, getValues());
     notifySuccess("Product updated successfully.");
-    reset();
+    resetForm();
   }
 
   useEffect(() => {
@@ -140,7 +145,7 @@ export const ProductForm = () => {
 
             <Button
               variant="danger"
-              onClick={() => (setProductToEdit({}), reset())}
+              onClick={() => resetForm()}
             >
               <X /> Clear
             </Button>
